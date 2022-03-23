@@ -1,17 +1,16 @@
 package com.example.holybibleapp.data
 
-import com.example.holybibleapp.data.net.BookServerModel
-import com.example.holybibleapp.data.net.BooksService
+import com.example.holybibleapp.data.net.BookCloud
+import com.example.holybibleapp.data.net.BookService
 
 interface BooksCloudDataSource {
 
+    suspend fun fetchBooks(): List<BookCloud>
 
-    suspend fun fetchBooks(): List<BookServerModel>
-
-    class Base(private val service: BooksService): BooksCloudDataSource {
-        override suspend fun fetchBooks(): List<BookServerModel> {
+    class Base(private val service: BookService): BooksCloudDataSource {
+        override suspend fun fetchBooks(): List<BookCloud> {
             return service.fetchBooks()
         }
-
     }
+
 }
