@@ -1,7 +1,6 @@
 package com.example.holybibleapp.core
 
 import android.app.Application
-import com.example.holybibleapp.domain.BooksInteractor
 import com.example.holybibleapp.presentation.Base
 import com.example.holybibleapp.presentation.BooksCommunication
 import com.example.holybibleapp.presentation.MainViewModel

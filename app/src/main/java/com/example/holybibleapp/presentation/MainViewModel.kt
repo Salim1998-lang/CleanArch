@@ -5,9 +5,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.holybibleapp.core.Abstract
-import com.example.holybibleapp.core.Book
 import com.example.holybibleapp.domain.BooksDomainToUiMapper
-import com.example.holybibleapp.domain.BooksInteractor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

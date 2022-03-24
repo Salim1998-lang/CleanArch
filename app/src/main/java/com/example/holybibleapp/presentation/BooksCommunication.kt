@@ -3,7 +3,6 @@ package com.example.holybibleapp.presentation
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.example.holybibleapp.core.Book
 
 interface BooksCommunication {
 
