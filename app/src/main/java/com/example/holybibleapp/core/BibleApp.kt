@@ -11,8 +11,10 @@ import com.example.holybibleapp.data.cache.RealmProvider
 import com.example.holybibleapp.data.net.BookCloudMapper
 import com.example.holybibleapp.data.net.BookService
 import retrofit2.Retrofit
+import com.example.holybibleapp.data.BooksDataToDomainMapper
+import com.example.holybibleapp.domain.BooksInteractor
 
-class BibleApp : Application() {
+class BibleApp: Application() {
 
     private companion object {
         const val BASE_URL = "https://bible-go-api.rkeplin.com/v1/"
@@ -36,5 +38,7 @@ class BibleApp : Application() {
             booksCloudMapper,
             booksCacheMapper
         )
+        val booksInteractor = BooksInteractor.Base(booksRepository, BooksDataToDomainMapper.Base())
+
     }
 }
