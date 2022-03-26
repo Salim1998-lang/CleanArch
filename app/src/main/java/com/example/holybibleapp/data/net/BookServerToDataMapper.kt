@@ -1,8 +1,8 @@
 package com.example.holybibleapp.data.net
 
 import com.example.holybibleapp.core.Abstract
-import com.example.holybibleapp.data.BookData
+import com.example.holybibleapp.data.BooksData
 
 interface BookServerToDataMapper : Abstract.Mapper {
-    fun map(id: Int, name: String): BookData
+    fun map(id: Int, name: String): BooksData
 }

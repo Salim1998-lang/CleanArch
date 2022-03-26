@@ -17,23 +17,26 @@ import com.example.holybibleapp.presentation.Base
 import com.example.holybibleapp.presentation.BooksCommunication
 import com.example.holybibleapp.presentation.MainViewModel
 import com.example.holybibleapp.presentation.ResourceProvider
+import com.google.gson.Gson
+import io.realm.Realm
 
-class BibleApp: Application() {
+class BibleApp : Application() {
 
     private companion object {
         const val BASE_URL = "https://bible-go-api.rkeplin.com/v1/"
     }
+
     lateinit var mainViewModel: MainViewModel
 
 
     override fun onCreate() {
         super.onCreate()
-
+        Realm.init(this)
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .build()
         val service = retrofit.create(BookService::class.java)
-        val cloudDataSource = BooksCloudDataSource.Base(service)
+        val cloudDataSource = BooksCloudDataSource.Base(service, Gson())
         val cacheDataSource = BooksCacheDataSource.Base(RealmProvider.Base())
         val booksCloudMapper = BooksCloudMapper.Base(BookCloudMapper.Base())
         val booksCacheMapper = BooksCacheMapper.Base(BookCacheMapper.Base())
@@ -45,7 +48,11 @@ class BibleApp: Application() {
             booksCacheMapper
         )
         val booksInteractor = BooksInteractor.Base(booksRepository, BooksDataToDomainMapper.Base())
-        val booksInteractor: BooksInteractor = TODO()
-        mainViewModel = MainViewModel(booksInteractor, Base(BooksCommunication.Base(), ResourceProvider.Base(this)),
+        val communication = BooksCommunication.Base()
+        mainViewModel = MainViewModel(
+            booksInteractor,
+            Base(communication, ResourceProvider.Base(this)),
+            communication
+        )
     }
 }

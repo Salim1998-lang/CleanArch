@@ -1,5 +1,6 @@
 package com.example.holybibleapp.presentation
 
+import com.example.holybibleapp.core.Book
 import com.example.holybibleapp.domain.BooksDomainToUiMapper
 import com.example.holybibleapp.domain.ErrorType
 

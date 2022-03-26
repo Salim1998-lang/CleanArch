@@ -2,6 +2,7 @@ package com.example.holybibleapp.presentation
 
 import com.example.holybibleapp.R
 import com.example.holybibleapp.core.Abstract
+import com.example.holybibleapp.core.Book
 import com.example.holybibleapp.domain.ErrorType
 
 sealed class BooksUi: Abstract.Object<Unit, Abstract.Mapper.Empty>() {
