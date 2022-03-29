@@ -5,7 +5,7 @@ import com.example.holybibleapp.core.Abstract
 import com.example.holybibleapp.core.Book
 import com.example.holybibleapp.domain.ErrorType
 
-sealed class BooksUi: Abstract.Object<Unit, Abstract.Mapper.Empty>() {
+sealed class BooksUi: Abstract.Object<Unit, Abstract.Mapper.Empty> {
 
     class Success(
         private val communication: BooksCommunication,

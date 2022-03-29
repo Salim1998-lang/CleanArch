@@ -6,7 +6,7 @@ import com.example.holybibleapp.presentation.BooksUi
 import retrofit2.HttpException
 import java.net.UnknownHostException
 
-sealed class BookDomain : Abstract.Object<BooksUi, BooksDomainToUiMapper>() {
+sealed class BookDomain : Abstract.Object<BooksUi, BooksDomainToUiMapper> {
     class Success(private val books: List<Book>) : BookDomain() {
         override fun map(mapper: BooksDomainToUiMapper): BooksUi {
             return mapper.map(books)

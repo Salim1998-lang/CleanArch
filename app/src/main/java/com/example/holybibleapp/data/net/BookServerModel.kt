@@ -9,6 +9,6 @@ data class BookServerModel(
     private val id: Int,
     @SerializedName("name")
     private val name: String,
-) : Abstract.Object<BooksData, BookServerToDataMapper>() {
+) : Abstract.Object<BooksData, BookServerToDataMapper> {
     override fun map(mapper: BookServerToDataMapper) = mapper.map(id, name)
 }
