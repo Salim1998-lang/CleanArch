@@ -14,6 +14,8 @@ import com.example.holybibleapp.presentation.MainViewModel
 import com.example.holybibleapp.presentation.ResourceProvider
 import com.google.gson.Gson
 import io.realm.Realm
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 
 class BibleApp : Application() {
 
@@ -27,8 +29,13 @@ class BibleApp : Application() {
     override fun onCreate() {
         super.onCreate()
         Realm.init(this)
+        val client = OkHttpClient.Builder()
+            .addInterceptor(HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            }).build()
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
+            .client(client)
             .build()
         val service = retrofit.create(BookService::class.java)
         val cloudDataSource = BooksCloudDataSource.Base(service, Gson())
@@ -47,7 +54,7 @@ class BibleApp : Application() {
         val communication = BooksCommunication.Base()
         mainViewModel = MainViewModel(
             booksInteractor,
-            Base(communication, ResourceProvider.Base(this)),
+            Base(ResourceProvider.Base(this)),
             communication
         )
     }

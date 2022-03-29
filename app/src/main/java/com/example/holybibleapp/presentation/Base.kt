@@ -5,14 +5,13 @@ import com.example.holybibleapp.domain.BooksDomainToUiMapper
 import com.example.holybibleapp.domain.ErrorType
 
 class Base(
-    private val communication: BooksCommunication,
     private val resourceProvider: ResourceProvider
 ) : BooksDomainToUiMapper {
     override fun map(books: List<Book>): BooksUi {
-        return BooksUi.Success(communication, books)
+        return BooksUi.Success(books)
     }
 
     override fun map(errorType: ErrorType): BooksUi {
-        return BooksUi.Fail(communication, errorType, resourceProvider)
+        return BooksUi.Fail(errorType, resourceProvider)
     }
 }

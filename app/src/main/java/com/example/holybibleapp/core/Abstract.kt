@@ -8,7 +8,5 @@ abstract class Abstract {
 
     }
 
-    interface Mapper {
-        class Empty : Mapper
-    }
+    interface Mapper
 }
