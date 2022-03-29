@@ -5,28 +5,30 @@ import com.example.holybibleapp.core.Abstract
 import com.example.holybibleapp.core.Book
 import com.example.holybibleapp.domain.ErrorType
 
-sealed class BooksUi: Abstract.Object<Unit, Abstract.Mapper.Empty>() {
+sealed class BooksUi: Abstract.Object<Unit, BooksCommunication>() {
 
     class Success(
-        private val communication: BooksCommunication,
         private val books: List<Book>): BooksUi() {
-        override fun map(mapper: Abstract.Mapper.Empty) {
-            communication.show(books)
+        override fun map(mapper: BooksCommunication) {
+            val booksUi = books.map {
+                BookUi.Base(it.id, it.name)
+            }
+            mapper.map(booksUi)
         }
     }
 
     class Fail(
-        private val communication: BooksCommunication,
         private val errorType: ErrorType,
         private val resourceProvider: ResourceProvider
         ): BooksUi() {
-        override fun map(mapper: Abstract.Mapper.Empty) {
+        override fun map(mapper: BooksCommunication) {
             val message = when(errorType) {
                 ErrorType.NO_CONNECTION -> R.string.no_connection_message
                 ErrorType.SERVICE_UNAVAILABLE -> R.string.service_unavailable
                 else -> R.string.something_went_error
             }
-            communication.show(resourceProvider.getString(message))
+            val messageId = resourceProvider.getString(message)
+            mapper.map(listOf(BookUi.Fail(messageId)))
         }
     }
 

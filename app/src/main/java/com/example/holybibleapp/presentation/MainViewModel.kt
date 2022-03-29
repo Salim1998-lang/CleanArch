@@ -17,17 +17,20 @@ class MainViewModel(
     private val booksDomainToUiMapper: BooksDomainToUiMapper,
     private val communication: BooksCommunication,
 
-    ): ViewModel() {
+    ) : ViewModel() {
 
-    fun fetchBooks() = viewModelScope.launch(Dispatchers.IO) {
-        val result = booksInteractor.fetchBooks()
-        withContext(Dispatchers.Main) {
-            result.map(booksDomainToUiMapper).map(Abstract.Mapper.Empty())
+    fun fetchBooks() {
+        communication.map(listOf(BookUi.Progress))
+        viewModelScope.launch(Dispatchers.IO) {
+            val result = booksInteractor.fetchBooks()
+            withContext(Dispatchers.Main) {
+                result.map(booksDomainToUiMapper).map(communication)
+            }
         }
     }
 
-    fun observe(owner: LifecycleOwner, observer: Observer<List<Book>>) {
-        communication.observeSuccess(owner, observer)
+    fun observe(owner: LifecycleOwner, observer: Observer<List<BookUi>>) {
+        communication.observe(owner, observer)
     }
 
 }
