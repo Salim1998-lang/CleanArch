@@ -1,13 +1,13 @@
 package com.example.holybibleapp.presentation
 
-import com.example.holybibleapp.core.Book
+import com.example.holybibleapp.data.BookData
 import com.example.holybibleapp.domain.BooksDomainToUiMapper
 import com.example.holybibleapp.domain.ErrorType
 
 class Base(
     private val resourceProvider: ResourceProvider
 ) : BooksDomainToUiMapper {
-    override fun map(books: List<Book>): BooksUi {
+    override fun map(books: List<BookData>): BooksUi {
         return BooksUi.Success(books)
     }
 

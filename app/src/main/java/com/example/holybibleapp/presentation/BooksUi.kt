@@ -2,10 +2,9 @@ package com.example.holybibleapp.presentation
 
 import com.example.holybibleapp.R
 import com.example.holybibleapp.core.Abstract
-import com.example.holybibleapp.core.Book
 import com.example.holybibleapp.domain.ErrorType
 
-sealed class BooksUi: Abstract.Object<Unit, BooksCommunication>() {
+sealed class BooksUi: Abstract.Object<Unit, BooksCommunication> {
 
     class Success(
         private val books: List<Book>): BooksUi() {

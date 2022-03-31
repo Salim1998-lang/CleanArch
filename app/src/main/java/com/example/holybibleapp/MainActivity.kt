@@ -1,8 +1,7 @@
 package com.example.holybibleapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.Observer
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.holybibleapp.core.BibleApp
 
@@ -16,7 +15,6 @@ class MainActivity : AppCompatActivity() {
             override fun tryAgain() {
                 viewModel.fetchBooks()
             }
-
         })
         recyclerView.adapter = adapter
         viewModel.observe(this) { adapter.update(it) }

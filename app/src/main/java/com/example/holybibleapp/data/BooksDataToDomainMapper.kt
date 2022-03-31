@@ -1,18 +1,17 @@
 package com.example.holybibleapp.data
 
 import com.example.holybibleapp.core.Abstract
-import com.example.holybibleapp.core.Book
-import com.example.holybibleapp.domain.BookDomain
+import com.example.holybibleapp.domain.BooksDomain
 
 interface BooksDataToDomainMapper: Abstract.Mapper {
 
-    fun map(books: List<Book>) : BookDomain
+    fun map(books: List<BookData>) : BooksDomain
 
-    fun map(e: Exception) : BookDomain
+    fun map(e: Exception) : BooksDomain
 
     class Base: BooksDataToDomainMapper {
-        override fun map(books: List<Book>) = BookDomain.Success(books)
-        override fun map(e: Exception) = BookDomain.Fail(e)
+        override fun map(books: List<BookData>) = BooksDomain.Success(books)
+        override fun map(e: Exception) = BooksDomain.Fail(e)
 
     }
 }

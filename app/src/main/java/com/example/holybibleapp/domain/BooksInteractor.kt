@@ -4,13 +4,13 @@ import com.example.holybibleapp.data.BooksDataToDomainMapper
 import com.example.holybibleapp.data.BooksRepository
 
 interface BooksInteractor {
-    suspend fun fetchBooks(): BookDomain
+    suspend fun fetchBooks(): BooksDomain
 
     class Base(
         private val booksRepository: BooksRepository,
         private val mapper: BooksDataToDomainMapper
     ) : BooksInteractor {
-        override suspend fun fetchBooks(): BookDomain {
+        override suspend fun fetchBooks(): BooksDomain {
             return booksRepository.fetchBooks().map(mapper)
         }
 

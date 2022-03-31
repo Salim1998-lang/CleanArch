@@ -1,7 +1,5 @@
 package com.example.holybibleapp.data.cache
 
-import com.example.holybibleapp.core.Book
-
 interface BooksCacheDataSource {
 
     fun fetchBooks(): List<BookDb>
